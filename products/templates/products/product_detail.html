@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ product.name }} | Prajava AgriTech</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        body {
+            background: #f6f8f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #155d27;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .navbar-brand span {
+            color: #ffc107;
+        }
+
+        .nav-link {
+            color: white !important;
+        }
+
+        .product-container {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.08);
+        }
+
+        .product-main-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .no-image {
+            height: 400px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            color: #888;
+            border-radius: 12px;
+        }
+
+        .product-title {
+            color: #155d27;
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .category {
+            color: #777;
+            font-size: 18px;
+        }
+
+        .price {
+            color: #198754;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .description {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        footer {
+            background: #103d1b;
+            color: white;
+            padding: 40px 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            Prajava <span>AgriTech</span>
+        </a>
+
+        <div>
+
+            <a
+                href="/"
+                class="btn btn-outline-light me-2"
+            >
+                Home
+            </a>
+
+            <a
+                href="/products/"
+                class="btn btn-warning"
+            >
+                All Products
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- PRODUCT -->
+
+<div class="container">
+
+    <div class="product-container">
+
+        <div class="row g-5 align-items-center">
+
+
+            <!-- IMAGE -->
+
+            <div class="col-lg-6">
+
+                {% if product.image %}
+
+                <img
+                    src="{{ product.image.url }}"
+                    class="product-main-image"
+                    alt="{{ product.name }}"
+                >
+
+                {% else %}
+
+                <div class="no-image">
+
+                    <i class="bi bi-image"></i>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="col-lg-6">
+
+                <div class="category mb-2">
+
+                    <i class="bi bi-tag"></i>
+
+                    {{ product.get_category_display }}
+
+                </div>
+
+
+                <h1 class="product-title">
+
+                    {{ product.name }}
+
+                </h1>
+
+
+                {% if product.price %}
+
+                <div class="price">
+
+                    ₹{{ product.price }}
+
+                </div>
+
+                {% else %}
+
+                <div class="price">
+
+                    Contact for Price
+
+                </div>
+
+                {% endif %}
+
+
+                <hr>
+
+
+                <h5 class="mt-4">
+                    Product Description
+                </h5>
+
+
+                <div class="description">
+
+                    {{ product.description|linebreaks }}
+
+                </div>
+
+
+                <div class="mt-4">
+
+                    <a
+                        href="{% url 'product_enquiry' product.pk %}"
+                        class="btn btn-success btn-lg me-2"
+                    >
+
+                        <i class="bi bi-chat-dots"></i>
+
+                        Enquire Now
+
+                    </a>
+
+
+                    <a
+                        href="/products/"
+                        class="btn btn-outline-success btn-lg"
+                    >
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <h4>
+            Prajava AgriTech
+        </h4>
+
+        <p>
+            Quality Agricultural Machinery & Products
+        </p>
+
+        <p class="mb-0">
+            © 2026 Prajava AgriTech. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
