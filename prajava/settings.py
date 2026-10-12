@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-f^tg4b&%$wrvghvkb=xo9tmh2lktnf*wbr+_39^wc)iv@!z4xl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "prajavaagritech.onrender.com",
+    #"localhost",
+    #"127.0.0.1",
+]
 
 
 # Application definition
